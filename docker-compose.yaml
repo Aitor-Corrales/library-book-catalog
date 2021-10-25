@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    restart: always
+    volumes:
+      - ./symfony/public:/var/www/symfony/public
+      - ./symfony/var:/var/www/symfony/var
+    ports:
+      - '8080:80'
+    networks:
+      - symfony
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    environment:
+      APP_ENV: dev
+    restart: always
+    volumes:
+      - ./symfony/:/var/www/symfony/
+    networks:
+      - symfony
+    depends_on:
+      - mysql
+  encore:
+    build:
+      context: .
+      dockerfile: Dockerfile-encore
+    restart: always
+    expose:
+      - "3000"
+    volumes:
+      - ./symfony/public:/var/www/symfony/public
+      - ./symfony/assets:/var/www/symfony/assets
+      - ./symfony/webpack.config.js:/var/www/symfony/webpack.config.js
+    networks:
+      - symfony
+    depends_on:
+      - php
+    command:
+      yarn encore dev --watch
+  mysql:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - symfony
+networks:
+  symfony:
