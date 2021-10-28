@@ -2,16 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AuthorRepository;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AuthorRepository::class)
+ * @ORM\Entity(repositoryClass=TagRepository::class)
  */
-class Author
+class Tag
 {
     /**
      * @ORM\Id
@@ -26,7 +24,7 @@ class Author
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Book::class, mappedBy="authors")
+     * @ORM\ManyToMany(targetEntity=Book::class, mappedBy="tags")
      */
     private $books;
 
@@ -50,17 +48,6 @@ class Author
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-        return $this;
-    }
-
     /**
      * @return Collection|Book[]
      */
@@ -73,32 +60,30 @@ class Author
     {
         if (!$this->books->contains($book)) {
             $this->books[] = $book;
-            $book->addAuthor($this);
+            $book->addTag($this);
         }
-
         return $this;
     }
 
     public function removeBook(Book $book): self
     {
         if ($this->books->removeElement($book)) {
-            $book->removeAuthor($this);
+            $book->removeTag($this);
         }
-
         return $this;
     }
 
-    public function getCreationDate(): ?DateTimeInterface
+    public function getCreationDate(): ?\DateTimeInterface
     {
         return $this->creationDate;
     }
 
-    public function getLastModificationDate(): ?DateTimeInterface
+    public function getLastModificationDate(): ?\DateTimeInterface
     {
         return $this->lastModificationDate;
     }
 
-    public function setLastModificationDate(?DateTimeInterface $lastModificationDate): self
+    public function setLastModificationDate(?\DateTimeInterface $lastModificationDate): self
     {
         $this->lastModificationDate = $lastModificationDate;
         return $this;

@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,56 +21,133 @@ class Book
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity=Author::class, inversedBy="books")
      */
-    private $title;
+    private $authors;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="books")
      */
-    private $description;
+    private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=BookEdition::class, mappedBy="book")
      */
-    private $author;
+    private $bookEditions;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $creationDate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastModificationDate;
+
+    public function __construct()
+    {
+        $this->authors = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->bookEditions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    /**
+     * @return Collection|Author[]
+     */
+    public function getAuthors(): Collection
     {
-        return $this->title;
+        return $this->authors;
     }
 
-    public function setTitle(string $title): self
+    public function addAuthor(Author $author): self
     {
-        $this->title = $title;
+        if (!$this->authors->contains($author)) {
+            $this->authors[] = $author;
+        }
+
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function removeAuthor(Author $author): self
     {
-        return $this->description;
-    }
+        $this->authors->removeElement($author);
 
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
         return $this;
     }
 
-    public function getAuthor(): ?Author
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
     {
-        return $this->author;
+        return $this->tags;
     }
 
-    public function setAuthor(?Author $author): self
+    public function addTag(Tag $tag): self
     {
-        $this->author = $author;
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
         return $this;
     }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BookEdition[]
+     */
+    public function getBookEditions(): Collection
+    {
+        return $this->bookEditions;
+    }
+
+    public function addBookEdition(BookEdition $bookEdition): self
+    {
+        if (!$this->bookEditions->contains($bookEdition)) {
+            $this->bookEditions[] = $bookEdition;
+            $bookEdition->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookEdition(BookEdition $bookEdition): self
+    {
+        if ($this->bookEditions->removeElement($bookEdition)) {
+            if ($bookEdition->getBook() === $this) {
+                $bookEdition->setBook(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    public function getLastModificationDate(): ?DateTimeInterface
+    {
+        return $this->lastModificationDate;
+    }
+
+    public function setLastModificationDate(?DateTimeInterface $lastModificationDate): self
+    {
+        $this->lastModificationDate = $lastModificationDate;
+        return $this;
+    }
+
 }
