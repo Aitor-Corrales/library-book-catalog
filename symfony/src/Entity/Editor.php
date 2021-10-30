@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +42,11 @@ class Editor
      * @ORM\JoinColumn(nullable=false)
      */
     private $editorial;
+
+    /**
+     * @ORM\OneToMany(targetEntity=BookEdition::class, mappedBy="editor")
+     */
+    private $bookEditions;
 
     public function getId(): ?int
     {
@@ -96,5 +102,13 @@ class Editor
         $this->editorial = $editorial;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|BookEdition[]
+     */
+    public function getBookEditions(): Collection
+    {
+        return $this->bookEditions;
     }
 }

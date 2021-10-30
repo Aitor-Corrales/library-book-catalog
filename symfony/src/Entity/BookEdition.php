@@ -25,6 +25,11 @@ class BookEdition
     private $edition;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imagePath;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="bookEditions")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -51,6 +56,12 @@ class BookEdition
      */
     private $editorial;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Editor::class, inversedBy="bookEditions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $editor;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,6 +76,17 @@ class BookEdition
     {
         $this->edition = $edition;
 
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(string $imagePath): self
+    {
+        $this->imagePath = $imagePath;
         return $this;
     }
 
@@ -131,7 +153,17 @@ class BookEdition
     public function setEditorial(?Editorial $editorial): self
     {
         $this->editorial = $editorial;
+        return $this;
+    }
 
+    public function getEditor(): ?Editor
+    {
+        return $this->editor;
+    }
+
+    public function setEditor(?Editor $editor): self
+    {
+        $this->editor = $editor;
         return $this;
     }
 }

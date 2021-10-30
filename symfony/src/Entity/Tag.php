@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -48,6 +49,17 @@ class Tag
         return $this->id;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
     /**
      * @return Collection|Book[]
      */
@@ -73,17 +85,17 @@ class Tag
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?DateTimeInterface
     {
         return $this->creationDate;
     }
 
-    public function getLastModificationDate(): ?\DateTimeInterface
+    public function getLastModificationDate(): ?DateTimeInterface
     {
         return $this->lastModificationDate;
     }
 
-    public function setLastModificationDate(?\DateTimeInterface $lastModificationDate): self
+    public function setLastModificationDate(?DateTimeInterface $lastModificationDate): self
     {
         $this->lastModificationDate = $lastModificationDate;
         return $this;

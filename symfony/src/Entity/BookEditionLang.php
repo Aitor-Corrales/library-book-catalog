@@ -31,6 +31,21 @@ class BookEditionLang
     private $bookEdition;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $summary;
+
+    /**
+     * @ORM\Column(type="string", length=2)
+     */
+    private $language;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $creationDate;
@@ -64,6 +79,39 @@ class BookEditionLang
     public function setBookEdition(?BookEdition $bookEdition): self
     {
         $this->bookEdition = $bookEdition;
+        return $this;
+    }
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(string $language): self
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(string $summary): self
+    {
+        $this->summary = $summary;
         return $this;
     }
 
