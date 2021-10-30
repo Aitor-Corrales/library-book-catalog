@@ -21,7 +21,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addStyleEntry('global_styles', './assets/styles/global.scss')
-    // .addEntry('app_js', './assets/js/app.js')
+    .addStyleEntry('reset_styles', './assets/styles/reset.scss')
+    .addStyleEntry('buttons_styles', './assets/styles/atoms/buttons.scss')
+    .addEntry('app_js', './assets/js/app.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -56,6 +58,7 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+    .addLoader({test: /\.svg$/, loader: 'svg-sprite-loader'})
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()
