@@ -5,3 +5,4 @@ COPY symfony /var/www/symfony
 WORKDIR /var/www/symfony
 RUN yarn -y install
 RUN yarn add sass-loader@^12.0.0 sass --dev
+RUN yarn add svg-sprite-loader -D
