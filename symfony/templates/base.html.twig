@@ -2,33 +2,75 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+    <title>Library Hall</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('global_styles') }}
-        {# <link rel="stylesheet" href="/public/styles/global.css" #}
+        {{ encore_entry_link_tags('reset_styles') }}
     {% endblock %}
 
     {% block javascripts %}
-        {# {{ encore_entry_script_tags('app') }} #}
+        {{ encore_entry_script_tags('app_js') }}
     {% endblock %}
 </head>
 <body>
-<nav class="navigation">
-    <ol class="navigation__list">
-        <li>first nav</li>
-        <li>second nav</li>
-        <li>third nav</li>
-        <li>fourth nav</li>
-    </ol>
-</nav>
-{% block body %}
+{% block all %}
+    <header class="header">
+        <article class="header__library_icon"></article>
+        <nav class="header__navigation">
+            <ol class="navigation__list">
+                <li>first nav</li>
+                <li>second nav</li>
+                <li>third nav</li>
+                <li>fourth nav</li>
+            </ol>
+        </nav>
+        <article class="header__profile">
+            <svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            >
+                <title>ic_fluent_person_48_regular</title>
+                <desc>Created with Sketch.</desc>
+                <g id="🔍-System-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="ic_fluent_person_48_regular" fill="#212121" fill-rule="nonzero">
+                        <path d="M35.7502,28 C38.0276853,28 39.8876578,29.7909151 39.9950978,32.0427546 L40,32.2487 L40,33 C40,36.7555 38.0583,39.5669 35.0798,41.3802 C32.1509,43.1633 28.2139,44 24,44 C19.7861,44 15.8491,43.1633 12.9202,41.3802 C10.0319285,39.6218485 8.11862909,36.9249713 8.00532378,33.3388068 L8,33 L8,32.2489 C8,29.9703471 9.79294995,28.1122272 12.0440313,28.0048972 L12.2499,28 L35.7502,28 Z M35.7502,30.5 L12.2499,30.5 C11.331345,30.5 10.5787597,31.2066575 10.5057976,32.1054618 L10.5,32.2489 L10.5,33 C10.5,35.7444 11.8602,37.8081 14.2202,39.2448 C16.6297,40.7117 20.0677,41.5 24,41.5 C27.9323,41.5 31.3703,40.7117 33.7798,39.2448 C36.0555143,37.8594107 37.4015676,35.8910074 37.4948116,33.2914406 L37.5,33 L37.5,32.2488 C37.5,31.331195 36.7934328,30.5787475 35.8937801,30.5057968 L35.7502,30.5 Z M24,4 C29.5228,4 34,8.47715 34,14 C34,19.5228 29.5228,24 24,24 C18.4772,24 14,19.5228 14,14 C14,8.47715 18.4772,4 24,4 Z M24,6.5 C19.8579,6.5 16.5,9.85786 16.5,14 C16.5,18.1421 19.8579,21.5 24,21.5 C28.1421,21.5 31.5,18.1421 31.5,14 C31.5,9.85786 28.1421,6.5 24,6.5 Z"
+                              id="🎨-Color"></path>
+                    </g>
+                </g>
+            </svg>
+        </article>
+    </header>
+    <section class="body">
+        <article class="body__alerts"></article>
+        <article class="body__content">
+            {% block search %}
+                <article class="body__content__page__search">
+                    <form class="search_form" action="{{ path('search') }}" method="get">
+                        <input class="input input--search" name="searchTerm" type="text"
+                               placeholder="Type here what you're searching for...">
+                        <button class="search_form__button--search button button--search" type="submit">
+                            <svg width="16px" height="16px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                 x="0px" y="0px"
+                                 viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;"
+                                 xml:space="preserve">
+                        <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+                        c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+                        C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+                        S32.459,40,21.983,40z"/></svg>
+                        </button>
+                    </form>
+                </article>
+            {% endblock %}
+            <div class="body__content__page">
+                <h1>{% block title %}{% endblock %}</h1>
+                {% block body_content %}
+                {% endblock %}
+            </div>
+        </article>
+    </section>
+    <footer class="footer">
+        <article class="footer__disclaimer_article">
+            <span class="footer__disclaimer_article__copyright">copyright example</span>
+        </article>
+    </footer>
 {% endblock %}
-<footer class="footer">
-    <article class="footer__disclaimer_article">
-        <span class="footer__disclaimer_article__copyright">copyright example</span>
-    </article>
-</footer>
 </body>
 </html>
