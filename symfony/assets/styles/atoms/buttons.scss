@@ -1,0 +1,19 @@
+@import "../mixins/buttons";
+
+.button {
+  @include button();
+}
+
+.button.button--primary {
+  @include button--primary();
+}
+
+.button.button--primary-inverted {
+  @include button--primary-inverted();
+}
+
+.button--search {
+  background-color: transparent;
+  padding: 8px;
+  border: 0;
+}

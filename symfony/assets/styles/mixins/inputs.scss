@@ -1,0 +1,31 @@
+@import '../variables/colors';
+
+@mixin input--text(
+  $padding: 8px 12px,
+  $border-color-focus: $main-input-text-border-color-focus,
+  $border-radius: 4px,
+) {
+  box-sizing: border-box;
+  padding: $padding;
+  border-radius: $border-radius;
+  border: 1px solid $grey-1-color;
+  &:focus,
+  &:focus-visible {
+    border: 1px solid $border-color-focus;
+    outline: none;
+  }
+}
+
+@mixin input--search(
+  $padding: 8px 12px,
+  $border-color-focus: $main-input-text-border-color-focus,
+  $border-radius: 4px,
+) {
+  @include input--text($padding, $border-color-focus, $border-radius);
+  &::after {
+    content: '0';
+    width: 16px;
+    height: 16px;
+  }
+}
+

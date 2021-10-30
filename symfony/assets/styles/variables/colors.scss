@@ -1,0 +1,59 @@
+// Colors
+$white-color: #FFFFFF;
+$black-color: #000000;
+
+$grey-1-color: #9E9E9E;
+$grey-2-color: #BDBDBD;
+$grey-3-color: #E0E0E0;
+$grey-4-color: #EEEEEE;
+$grey-5-color: #F5F5F5;
+$grey-6-color: #FAFAFA;
+
+$blue-1-color: #0288D1;
+$blue-2-color: #039BE5;
+$blue-3-color: #03A9F4;
+$blue-4-color: #29B6F6;
+$blue-5-color: #4FC3F7;
+$blue-6-color: #81D4FA;
+
+$green-1-color: #00897B;
+$green-2-color: #009688;
+$green-3-color: #26A69A;
+$green-4-color: #4DB6AC;
+$green-5-color: #80CBC4;
+$green-6-color: #B2DFDB;
+
+$orange-1-color: #FFA000;
+$orange-2-color: #FFB300;
+$orange-3-color: #FFC107;
+$orange-4-color: #FFCA28;
+$orange-5-color: #FFD54F;
+$orange-6-color: #FFE082;
+
+$red-1-color: #B00020;
+$red-2-color: #D84315;
+$red-3-color: #FF5722;
+$red-4-color: #FF7043;
+$red-5-color: #FF8A65;
+$red-6-color: #FFAB91;
+
+
+$brown-color: #A52A2A;
+
+// Alerts
+$info-color: $blue-6-color;
+$warning-color: $orange-6-color;
+$alert-color: $red-6-color;
+
+// Buttons
+$main-button-primary-color: $green-3-color;
+$main-button-primary-color-hover: $green-1-color;
+
+$main-button-primary-color-inverted: $green-3-color;
+$main-button-primary-color-inverted-hover: $grey-6-color;
+
+// Inputs
+$main-input-text-border-color-focus: $green-3-color;
+
+// Global
+$main-app-color: $brown-color;

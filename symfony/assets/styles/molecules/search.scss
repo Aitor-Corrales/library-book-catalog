@@ -1,0 +1,10 @@
+.search_form {
+  position: relative;
+}
+
+.search_form__button--search {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

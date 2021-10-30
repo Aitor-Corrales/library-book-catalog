@@ -1,3 +1,63 @@
+@import './variables/colors';
+@import './atoms/buttons';
+@import './atoms/inputs';
+@import './atoms/alerts';
+@import './molecules/search';
+
+
 body {
-  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  background-color: $grey-6-color;
+  height: 100vh;
+
+  font-family: "Roboto Light";
+  overflow: hidden;
 }
+
+// Header section
+.header {
+  display: flex;
+  padding: 10px;
+  background-color: $white-color;
+  box-shadow: 0px 0px 2px $black-color;
+}
+
+.header__profile {
+  align-self: flex-end;
+}
+
+// Body section
+.body {
+  flex: 1 1 auto;
+  max-width: 1360px;
+  margin: 24px auto;
+}
+
+.body__content {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.body__content__page {
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  background-color: $white-color;
+  box-shadow: 0px 0px 1px $black-color;
+}
+
+.body__content__page__search {
+  margin: 16px 0;
+}
+
+// Footer section
+.footer {
+  background-color: $black-color;
+  color: $grey-6-color;
+
+  .footer__disclaimer_article {
+
+  }
+}
+

@@ -1,0 +1,10 @@
+@import "../mixins/inputs";
+
+.input--text {
+  @include input--text();
+}
+
+.input--search {
+  width: 100%;
+  @include input--text();
+}

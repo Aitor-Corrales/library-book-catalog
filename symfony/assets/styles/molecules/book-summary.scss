@@ -1,0 +1,22 @@
+.book_summary {
+  display: grid;
+  grid-template-areas:"image title"
+                      "image summary"
+                      "tags tags";
+}
+
+.book_summary__image {
+  grid-area: image;
+}
+
+.book_summary__title {
+  grid-area: title;
+}
+
+.book_summary__summary {
+  grid-area: summary;
+}
+
+.book_summary__tags {
+  grid-area: tags;
+}
