@@ -3,15 +3,14 @@
 namespace App\Service;
 
 use App\Entity\BookEditionLang;
-use App\Repository\BookEditionLangRepository;
 
 class SearchService
 {
-    private BookEditionLangRepository $bookEditionLangRepository;
+    private BookManagementService $bookManagementService;
 
-    public function __construct(BookEditionLangRepository $bookEditionLangRepository)
+    public function __construct(BookManagementService $bookManagementService)
     {
-        $this->bookEditionLangRepository = $bookEditionLangRepository;
+        $this->bookManagementService = $bookManagementService;
     }
 
     /**
@@ -20,7 +19,7 @@ class SearchService
      */
     public function getBookEditionLangsByCriteria(string $criteria): array
     {
-        return $this->bookEditionLangRepository->getBookEditionLangsByTextCriteria($criteria);
+        return $this->bookManagementService->getBookEditionLangsByCriteria($criteria);
     }
 
 }

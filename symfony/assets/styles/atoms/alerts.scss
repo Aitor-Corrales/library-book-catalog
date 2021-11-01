@@ -1,13 +1,17 @@
+@import "../mixins/alerts";
+
 .alert {
-  &.alert--info {
+  @include alert();
+}
 
-  }
+.alert.alert--info {
+  @include alert--info();
+}
 
-  &.alert--warning {
+.alert.alert--warning {
 
-  }
+}
 
-  &.alert--error {
+.alert.alert--error {
 
-  }
 }

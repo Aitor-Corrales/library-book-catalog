@@ -1,20 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Library Hall{% endblock %}
 {% block body_content %}
-    <ul class="book_list">
-        {% for bookEditionLang in toShowBooks %}
-            <li class="book_list__book_summary book_summary">
-                <img class="book_summary__image"
-                     src="{{ asset('images/list/' ~ bookEditionLang.bookEdition.imagePath ~ '.jpg') }}"
-                     alt="{{ bookEditionLang.title }}"/>
-                <span class="book_summary__title">{{ bookEditionLang.title }}</span>
-                <span class="book_summary__summary">{{ bookEditionLang.summary }}</span>
-                <ul class="book_summary__tags tags">
-                    {% for tag in bookEditionLang.bookEdition.book.tags %}
-                        <li class="tags__tag_name">{{ tag.name }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+     {% include('library/books/book-edition-lang-list.html.twig') %}
 {% endblock %}

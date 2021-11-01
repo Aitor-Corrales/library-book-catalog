@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const svgSpritePlugin = require('svg-sprite-loader/plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -23,7 +24,9 @@ Encore
     .addStyleEntry('global_styles', './assets/styles/global.scss')
     .addStyleEntry('reset_styles', './assets/styles/reset.scss')
     .addStyleEntry('buttons_styles', './assets/styles/atoms/buttons.scss')
+    .addStyleEntry('login_register_styles', './assets/styles/molecules/login-register.scss')
     .addEntry('app_js', './assets/js/app.js')
+    .addEntry('register_form_js', './assets/js/modules/register-form-validations.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -58,7 +61,21 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-    .addLoader({test: /\.svg$/, loader: 'svg-sprite-loader'})
+    .addLoader({
+        test: /\.svg$/i,
+        include: /.*-sprite\.svg/,
+        use: [
+            {
+                loader: 'svg-sprite-loader',
+                options: {
+                    publicPath: 'public/svg',
+                }
+            },
+        ],
+    })
+    .addPlugin(new svgSpritePlugin({
+        plainSprite: true
+    }))
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()

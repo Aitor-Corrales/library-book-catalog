@@ -10,8 +10,8 @@ abstract class EnumeratorAbstract
      * @return String[]
      * Returns an associative array with every constant in the class
      */
-    public function getEnumList(): array
+    public static function getEnumList(): array
     {
-        return (new ReflectionClass(self::class))->getConstants();
+        return (new ReflectionClass(get_called_class()))->getConstants();
     }
 }

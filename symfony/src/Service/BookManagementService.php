@@ -18,9 +18,18 @@ class BookManagementService
      * @return BookEditionLang[]
      * Returns a stack of 10 random books in order to show them in the Home page
      */
-    public function getBooksEditionLangHome(int $bookNumber = 10): array
+    public function getBookEditionLangsHome(int $bookNumber = 10): array
     {
         return $this->bookEditionLangRepository->getRandomBooks($bookNumber);
+    }
+
+    /**
+     * @return BookEditionLang[]
+     * Returns an array of BookEditionLangs that matches the criteria.
+     */
+    public function getBookEditionLangsByCriteria(string $criteria): array
+    {
+        return $this->bookEditionLangRepository->getBookEditionLangsByTextCriteria($criteria);
     }
 
 }

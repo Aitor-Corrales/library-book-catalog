@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets_custom %}
+    {{ encore_entry_link_tags('login_register_styles') }}
+{% endblock %}
+{% block javascripts_custom %}
+    {{ encore_entry_script_tags('register_form_js') }}
+{% endblock %}
+
+{% block alerts %}
+    {% if error %}
+        <span class="alert alert--error">{{ error }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block all %}
+    <section class="register">
+        <h1>Register</h1>
+        <form action="{{ path('register') }}" class="register__form" method="post">
+            <div class="email_section form_section">
+                <label for="email">Email</label>
+                <input class="input input--text email_validation" placeholder="testemail@testdomain.ccc" type="text"
+                       id="email" name="_email" required/>
+                <span class="email_validation_failed validation_failed hidden"></span>
+            </div>
+
+            <div class="email_section form_section">
+                <label for="password">Password</label>
+                <input class="input input--text password_validation" type="password" id="password" name="_password"
+                       required/>
+                <span class="password_validation_failed validation_failed hidden"></span>
+            </div>
+
+            <div class="email_section form_section">
+                <label for="repeat-password">Repeat Password</label>
+                <input class="input input--text repeat_password_validation" type="password" id="repeat-password"
+                       required/>
+                <span class="repeat_password_validation_failed validation_failed hidden"></span>
+            </div>
+
+            <label for="language">Language</label>
+            <select class="select select--single" id="language" name="_language" required>
+                <option class="select__option" value="">Select an option</option>
+                {% for key, value in languages %}
+                    <option class="select__option" value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+
+            <button class="button button--primary submit" type="submit">Register</button>
+        </form>
+    </section>
+{% endblock %}
+
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Register{% endblock %} #}
+
+{# {% block body %} #}
+
+{# {{ form_start(registrationForm) }} #}
+{# {{ form_row(registrationForm.email) }} #}
+{# {{ form_row(registrationForm.plainPassword, { #}
+{# label: 'Password' #}
+{# }) }} #}
+{# {{ form_row(registrationForm.agreeTerms) }} #}
+
+{# <button type="submit" class="button button--primary">Register</button> #}
+{# {{ form_end(registrationForm) }} #}
+{# {% endblock %} #}

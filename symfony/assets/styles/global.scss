@@ -1,18 +1,24 @@
 @import './variables/colors';
 @import './atoms/buttons';
 @import './atoms/inputs';
+@import './atoms/select';
 @import './atoms/alerts';
 @import './molecules/search';
+@import './molecules/book-summary';
+@import './organism/book-list';
 
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: $grey-6-color;
   height: 100vh;
-
-  font-family: "Roboto Light";
-  overflow: hidden;
+  color: $black-color;
+  //font-family: "Roboto Light";
+  h1 {
+    font-size: 2.4rem;
+  }
 }
 
 // Header section
@@ -23,8 +29,40 @@ body {
   box-shadow: 0px 0px 2px $black-color;
 }
 
+.header__library_icon,
+.header__profile,
+.header__navigation {
+  align-self: center;
+}
+
+.header__navigation {
+  flex: 1;
+  margin: 0 64px;
+
+  .navigation__list {
+    display: flex;
+    flex-direction: row;
+
+    .navigation__list__element {
+      margin-right: 64px;
+    }
+  }
+}
+
 .header__profile {
-  align-self: flex-end;
+  position: relative;
+}
+
+.header__profile .profile__icon {
+  cursor: pointer;
+}
+
+.header__profile .profile__options {
+  position: absolute;
+  background-color: $white-color;
+  border: 1px solid $black-color;
+  padding: 16px;
+  right: 0;
 }
 
 // Body section
@@ -32,19 +70,24 @@ body {
   flex: 1 1 auto;
   max-width: 1360px;
   margin: 24px auto;
+  overflow: hidden;
 }
 
 .body__content {
+  display: flex;
+  flex-direction: column;
   margin-left: 40px;
   margin-right: 40px;
+  height: 100%;
 }
 
 .body__content__page {
   overflow: auto;
   box-sizing: border-box;
+  max-height: 100%;
   padding: 24px;
   background-color: $white-color;
-  box-shadow: 0px 0px 1px $black-color;
+  border: 1px solid $grey-2-color;
 }
 
 .body__content__page__search {
@@ -59,5 +102,19 @@ body {
   .footer__disclaimer_article {
 
   }
+}
+
+// General styles
+a {
+  color: $blue-3-color;
+
+  &:hover,
+  &:active {
+    color: $blue-1-color;
+  }
+}
+
+.hidden {
+  display: none !important;
 }
 

@@ -1,8 +1,16 @@
-.book_summary {
+@import '../variables/colors';
+
+.book_list__book_summary.book_summary {
   display: grid;
   grid-template-areas:"image title"
                       "image summary"
                       "tags tags";
+  grid-gap: 16px;
+  padding: 12px;
+
+  &:hover {
+    background-color: $grey-4-color !important;
+  }
 }
 
 .book_summary__image {
@@ -19,4 +27,12 @@
 
 .book_summary__tags {
   grid-area: tags;
+
+  .tags__tag_name {
+    padding: 4px;
+    color: $grey-6-color;
+    background-color: $orange-4-color;
+    border: 1px solid $orange-4-color;
+    border-radius: 4px;
+  }
 }

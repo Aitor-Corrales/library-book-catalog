@@ -4,10 +4,10 @@ namespace App\Model\Enumerator;
 
 class Language extends EnumeratorAbstract
 {
-    const ES = 'ES';
-    const EN = 'EN';
-    const IT = 'IT';
-    const FR = 'FR';
-    const PT = 'PT';
-    const DE = 'DE';
+    const ES = 'Español';
+    const EN = 'English';
+    const IT = 'Italian';
+    const FR = 'French';
+    const PT = 'Portuguese';
+    const DE = 'Deutsch';
 }

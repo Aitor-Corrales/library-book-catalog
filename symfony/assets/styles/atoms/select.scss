@@ -1,0 +1,5 @@
+@import "../mixins/inputs";
+
+.select.select--single {
+  @include input--text();
+}

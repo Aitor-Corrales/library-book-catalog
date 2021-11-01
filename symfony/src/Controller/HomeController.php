@@ -23,7 +23,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('library/home.html.twig', [
-            'toShowBooks' => $this->bookManagementService->getBooksEditionLangHome(),
+            'toShowBooks' => $this->bookManagementService->getBookEditionLangsHome(),
         ]);
     }
 }
