@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookEditionRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,7 +26,7 @@ class BookEdition
     private $edition;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", nullable=true, length=255)
      */
     private $imagePath;
 
@@ -61,6 +62,12 @@ class BookEdition
      * @ORM\JoinColumn(nullable=false)
      */
     private $editor;
+
+    public function __construct()
+    {
+        $this->bookEditionLangs = new ArrayCollection();
+        $this->creationDate = new \DateTime();
+    }
 
     public function getId(): ?int
     {

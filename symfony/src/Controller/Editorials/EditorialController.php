@@ -2,12 +2,12 @@
 
 namespace App\Controller\Editorials;
 
+use App\Controller\BaseController;
 use App\Repository\EditorialRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EditorialController extends AbstractController
+class EditorialController extends BaseController
 {
     private EditorialRepository $editorialRepository;
 
@@ -19,10 +19,24 @@ class EditorialController extends AbstractController
     /**
      * @Route("/editorials", name="editorialList")
      */
-    public function index(): Response
+    public function editorialList(): Response
     {
         return $this->render('library/editorial-list.html.twig', [
-            'editorials' => $this->editorialRepository,
+            'editorials' => $this->editorialRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/editorial/{id}", name="editorial")
+     */
+    public function editorialPage(int $id): Response
+    {
+        $editorial = $this->editorialRepository->find($id);
+        if ($editorial) {
+            return $this->render('library/editorials/editorial.html.twig', [
+                'editorial' => $editorial,
+            ]);
+        }
+        return $this->renderErrorPage();
     }
 }

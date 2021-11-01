@@ -2,18 +2,21 @@
 
 namespace App\Controller\Authentication;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginController extends AbstractController
+class LoginController extends BaseController
 {
     /**
      * @Route("/login", name="login")
      */
-    public function login(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('library/authentication/login.html.twig');
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        return $this->render('library/authentication/login.html.twig', ['error' => $error]);
     }
 
     /**

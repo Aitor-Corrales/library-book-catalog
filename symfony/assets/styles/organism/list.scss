@@ -1,7 +1,11 @@
 @import '../variables/colors';
 
-.book_list {
-  .book_list__book_summary:nth-child(2n) {
+.list {
+  .list__element:nth-child(2n) {
     background-color: $grey-6-color;
+  }
+
+  .list__element {
+    padding: 12px;
   }
 }

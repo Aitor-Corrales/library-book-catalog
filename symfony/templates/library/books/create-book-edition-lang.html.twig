@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block title %}Create a book!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createBookEditionLang') }}" class="create__form form" method="post">
+            <div class="title_section form_section">
+                <label for="title">Title</label>
+                <input class="input input--text" type="text" id="title" name="_title" required autofocus/>
+            </div>
+
+            <div class="summary_section form_section">
+                <label for="summary">Summary</label>
+                <textarea class="input input--text" maxlength="255" id="summary" name="_summary" required></textarea>
+            </div>
+
+            <div class="edition_section form_section">
+                <label for="edition">Edition</label>
+                <input class="input input--text" type="text" id="edition" name="_edition" required/>
+            </div>
+
+            <div class="translator_section form_section">
+                <label for="translator">Translator</label>
+                <select class="select select--single" id="translator" name="_translator" required>
+                    <option class="select__option" value="">Select an option</option>
+                    {% for translator in translators %}
+                        <option class="select__option" value="{{ translator.id }}">{{ translator.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="editorial_section form_section">
+                <label for="editorial">Editorial</label>
+                <select class="select select--single" id="editorial" name="_editorial" required>
+                    <option class="select__option" value="">Select an option</option>
+                    {% for editorial in editorials %}
+                        <option class="select__option" value="{{ editorial.id }}">{{ editorial.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="editor_section form_section">
+                <label for="editor">Editorial</label>
+                <select class="select select--single" id="editor" name="_editor" required>
+                    <option class="select__option" value="">Select an option</option>
+                    {% for editor in editors %}
+                        <option class="select__option" value="{{ editor.id }}">{{ editor.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="language_section form_section">
+                <label for="language">Language</label>
+                <select class="select select--single" id="language" name="_language" required>
+                    <option class="select__option" value="">Select an option</option>
+                    {% for key, value in languages %}
+                        <option class="select__option" value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="hidden" name="_create" value="true">
+            <button class="button button--primary submit" type="submit">Sign in</button>
+        </form>
+    </section>
+{% endblock %}

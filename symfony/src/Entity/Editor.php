@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -47,6 +48,12 @@ class Editor
      * @ORM\OneToMany(targetEntity=BookEdition::class, mappedBy="editor")
      */
     private $bookEditions;
+
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime();
+        $this->bookEditions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

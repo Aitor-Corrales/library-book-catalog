@@ -11,6 +11,17 @@
   &:hover {
     background-color: $grey-4-color !important;
   }
+
+  @media (max-width: 500px) {
+    grid-template-areas:"image"
+                      "title"
+                      "summary"
+                      "tags";
+    .book_summary__image {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
 
 .book_summary__image {
@@ -27,12 +38,4 @@
 
 .book_summary__tags {
   grid-area: tags;
-
-  .tags__tag_name {
-    padding: 4px;
-    color: $grey-6-color;
-    background-color: $orange-4-color;
-    border: 1px solid $orange-4-color;
-    border-radius: 4px;
-  }
 }

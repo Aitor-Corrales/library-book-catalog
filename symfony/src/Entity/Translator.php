@@ -47,6 +47,7 @@ class Translator
     public function __construct()
     {
         $this->bookEditionLangs = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     public function getId(): ?int

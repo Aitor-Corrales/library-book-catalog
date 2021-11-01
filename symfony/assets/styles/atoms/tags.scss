@@ -1,0 +1,14 @@
+@import '../variables/colors';
+
+.tags .tags__tag_name {
+  padding: 4px;
+  color: $grey-6-color;
+  background-color: $orange-4-color;
+  border: 1px solid $orange-4-color;
+  border-radius: 4px;
+  margin-right: 4px;
+
+  a {
+    color: $white-color;
+  }
+}

@@ -10,15 +10,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
-use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 
-class LoginFormAuthenticator extends AbstractAuthenticator
+class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
     private UserRepository $userRepository;
     private RouterInterface $router;
@@ -58,9 +59,26 @@ class LoginFormAuthenticator extends AbstractAuthenticator
         return new RedirectResponse($this->router->generate('home'));
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
+    protected function getLoginUrl(): string
     {
-        return new RedirectResponse($this->router->generate('login'));
+        return $this->router->generate('login');
     }
 
+    public function getCredentials(Request $request): array
+    {
+        return [
+            'email' => $request->request->get('_email'),
+            'password' => $request->request->get('_password'),
+        ];
+    }
+
+    public function getUser($credentials, UserProviderInterface $userProvider)
+    {
+        return $this->userRepository->findOneBy(['email' => $credentials['email']]);
+    }
+
+    public function checkCredentials($credentials, UserInterface $user)
+    {
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+    }
 }

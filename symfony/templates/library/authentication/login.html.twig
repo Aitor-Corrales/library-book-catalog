@@ -4,18 +4,28 @@
     {{ encore_entry_link_tags('login_register_styles') }}
 {% endblock %}
 
-{% block all %}
+{% block alerts_error %}
+    {% if error %}
+        <li class="alert_error_list__error">
+            <span class="alert alert--error">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+{% block body %}
     <section class="login">
         <h1>Sign in</h1>
-        <form action="{{ path('login') }}" class="login__form" method="post">
+        <form action="{{ path('login') }}" class="login__form form" method="post">
             <div class="email_section form_section">
                 <label for="email">Email</label>
-                <input class="input input--text" type="text" id="email" name="_email"/>
+                <input class="input input--text" type="text" id="email" name="_email" required autofocus/>
             </div>
 
             <div class="email_section form_section">
                 <label for="password">Password</label>
-                <input class="input input--text" type="password" id="password" name="_password"/>
+                <input class="input input--text" type="password" id="password" name="_password" required/>
             </div>
 
             <button class="button button--primary" type="submit">Sign in</button>
@@ -23,3 +33,4 @@
         <a href="{{ path('register') }}" class="">Create an account</a>
     </section>
 {% endblock %}
+{% block footer %}{% endblock %}

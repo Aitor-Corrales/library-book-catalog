@@ -1,0 +1,31 @@
+@import '../variables/colors';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  .form_section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .validation_failed {
+    color: $red-1-color;
+  }
+
+  .submit {
+    margin-top: 16px;
+  }
+}
+
+.create__form {
+  .submit {
+    width: fit-content;
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}

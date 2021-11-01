@@ -1,0 +1,33 @@
+.book_edition_lang_info {
+  display: grid;
+  grid-template-areas:"image summary"
+                      "image editorial"
+                      "image edition"
+                      "image lang"
+                      "tags tags";
+  grid-gap: 16px;
+}
+
+.book_info__image {
+  grid-area: image;
+}
+
+.book_info__summary {
+  grid-area: summary;
+}
+
+.book_info__editorial {
+  grid-area: editorial;
+}
+
+.book_info__edition {
+  grid-area: edition;
+}
+
+.book_info__language {
+  grid-area: lang;
+}
+
+.book_info__tags {
+  grid-area: tags;
+}

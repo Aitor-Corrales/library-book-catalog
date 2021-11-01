@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ translator.name }}{% endblock %}
+{% block body_content %}
+    <span class="translator_name">{{ translator.name }}</span>
+    <span class="translator_email">{{ translator.email }}</span>
+{% endblock %}

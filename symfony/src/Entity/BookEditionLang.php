@@ -55,6 +55,11 @@ class BookEditionLang
      */
     private $lastModificationDate;
 
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

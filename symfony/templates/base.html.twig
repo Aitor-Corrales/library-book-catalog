@@ -195,6 +195,7 @@
                     <li><a href="{{ path('bookEditionLangList') }}" class="navigation__list__element">Books!</a></li>
                     <li><a href="{{ path('authorList') }}" class="navigation__list__element">Authors</a></li>
                     <li><a href="{{ path('editorialList') }}" class="navigation__list__element">Editorials</a></li>
+                    <li><a href="{{ path('translatorList') }}" class="navigation__list__element">Translators</a></li>
                 </ul>
             </nav>
             <article class="header__profile profile">
@@ -219,18 +220,42 @@
             </article>
         </header>
     {% endblock %}
+    {% block breadcrumbs %}
+        <section class="breadcrumbs"></section>
+    {% endblock %}
+    {% block alerts %}
+        <section class="alerts">
+            <ul class="alerts_error_list">
+                {% block alerts_error %}
+                    {% if error is defined %}
+                        <li class="alert_error_list__error">
+                            <span class="alert alert--error">{{ error }}</span>
+                        </li>
+                    {% endif %}
+                {% endblock %}
+            </ul>
+            <ul class="alerts_warning_list">
+                {% block alerts_warning %}{% endblock %}
+            </ul>
+            <ul class="alerts_info_list">
+                {% block alerts_info %}{% endblock %}
+            </ul>
+        </section>
+    {% endblock %}
     {% block body %}
         <section class="body">
-            <article class="body__alerts">
-                {% block alerts %}{% endblock %}
-            </article>
             <article class="body__content">
-                <h1>{% block title %}{% endblock %}</h1>
+                <div class="title_and_actions">
+                    <h1>{% block title %}{% endblock %}</h1>
+                    <div class="title_and_actions__actions">
+                        {% block actions %}{% endblock %}
+                    </div>
+                </div>
                 {% block search %}
                     <article class="body__content__page__search">
                         <form class="search_form" action="{{ path('search') }}" method="get">
                             <input class="input input--search" name="searchTerm" type="text"
-                                   placeholder="Type here what you're searching for...">
+                                   placeholder="Type here the book title you're searching for...">
                             <button class="search_form__button--search button button--search" type="submit">
                                 <svg width="16px" height="16px" version="1.1" id="Capa_1"
                                      xmlns="http://www.w3.org/2000/svg"
@@ -254,8 +279,13 @@
     {% endblock %}
     {% block footer %}
         <footer class="footer">
-            <article class="footer__disclaimer_article">
-                <span class="footer__disclaimer_article__copyright">copyright example</span>
+            <article class="footer__links">
+                <a href="#" class="footer__links__link">Contact</a>
+                <a href="#" class="footer__links__link">Location</a>
+                <a href="#" class="footer__links__link">Legal information</a>
+            </article>
+            <article class="footer__disclaimer">
+                <span class="footer__disclaimer__copyright">copyright example</span>
             </article>
         </footer>
     {% endblock %}

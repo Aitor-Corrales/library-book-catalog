@@ -1,15 +1,27 @@
 @import "../mixins/buttons";
 
+.link_to_button {
+  @include button();
+
+  &:hover {
+    color: inherit;
+  }
+}
+
 .button {
   @include button();
 }
 
-.button.button--primary {
+.button--primary {
   @include button--primary();
 }
 
-.button.button--primary-inverted {
+.button--primary-inverted {
   @include button--primary-inverted();
+}
+
+.button--alert {
+  @include button--alert();
 }
 
 .button--search {

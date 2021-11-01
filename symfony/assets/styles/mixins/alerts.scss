@@ -15,3 +15,21 @@
   color: $color;
   background-color: $background-color;
 }
+
+@mixin alert--warning(
+  $color: $black-color,
+  $background-color: $warning-color,
+  $background-color-icon: $orange-1-color,
+) {
+  color: $color;
+  background-color: $background-color;
+}
+
+@mixin alert--error(
+  $color: $black-color,
+  $background-color: $error-color,
+  $background-color-icon: $red-1-color,
+) {
+  color: $color;
+  background-color: $background-color;
+}

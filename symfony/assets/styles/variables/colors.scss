@@ -47,7 +47,7 @@ $brown-color: #A52A2A;
 // Alerts
 $info-color: $blue-7-color;
 $warning-color: $orange-6-color;
-$alert-color: $red-6-color;
+$error-color: $red-6-color;
 
 // Buttons
 $main-button-primary-color: $green-3-color;
@@ -55,6 +55,9 @@ $main-button-primary-color-hover: $green-1-color;
 
 $main-button-primary-color-inverted: $green-3-color;
 $main-button-primary-color-inverted-hover: $grey-6-color;
+
+$main-button-alert-color: $red-3-color;
+$main-button-alert-color-hover: $red-1-color;
 
 // Inputs
 $main-input-text-border-color-focus: $green-3-color;

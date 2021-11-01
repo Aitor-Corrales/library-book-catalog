@@ -50,6 +50,7 @@ class Book
         $this->authors = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->bookEditions = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     public function getId(): ?int

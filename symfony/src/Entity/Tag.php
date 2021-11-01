@@ -42,6 +42,7 @@ class Tag
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     public function getId(): ?int

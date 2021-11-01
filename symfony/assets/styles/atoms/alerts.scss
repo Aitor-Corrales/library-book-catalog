@@ -9,9 +9,13 @@
 }
 
 .alert.alert--warning {
-
+  @include alert--warning();
 }
 
 .alert.alert--error {
+  @include alert--error();
+}
 
+.alert_error_list__error {
+  margin-top: 24px;
 }

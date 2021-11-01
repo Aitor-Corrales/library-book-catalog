@@ -1,5 +1,47 @@
 {% extends 'base.html.twig' %}
-{% block title %}Search results{% endblock %}
+{% block title %}{{ bookEditionLang.title }}{% endblock %}
+
+{% block stylesheets_custom %}{{ encore_entry_link_tags('book_info_styles') }}{% endblock %}
+{% block breadcrumbs %}
+    <span class="breadcrumbs__string">
+    <a href="{{ path('home') }}">Home</a> -
+    <a href="{{ path('book', {'id': bookEditionLang.bookEdition.book.id}) }}">Book</a> -
+    <a href="{{ path('bookEdition', {'id': bookEditionLang.bookEdition.id}) }}">Book Edition</a> -
+    <a href="{{ path('bookEditionLang', {'id': bookEditionLang.id}) }}">{{ bookEditionLang.title }}</a>
+</span>
+{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary-inverted"
+       href="{{ path('modifyBookEditionLang', {'id': bookEditionLang.id}) }}">Modify</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteBookEditionLang', {'id': bookEditionLang.id}) }}">Delete</a>
+{% endblock %}
 {% block body_content %}
-    <span class="blbla">{{ bookEditionLang.title }}</span>
+    <section class="book_edition_lang_info book_info">
+        <img class="book_info__image"
+             src="{{ asset('images/covers/' ~ bookEditionLang.bookEdition.imagePath ~ '.jpg') }}"
+             alt="{{ bookEditionLang.title }}"/>
+        <div class="book_info__summary">
+            <p>
+                {{ bookEditionLang.summary }}
+            </p>
+        </div>
+        <div class="book_info__edition">
+            <span class="book_info__edition__label">Edition: </span>
+            <span class="book_info__edition__value">{{ bookEditionLang.bookEdition.edition }}</span>
+        </div>
+        <span class="book_info__editorial">
+        <a href="{{ path('editorial', { 'id': bookEditionLang.bookEdition.editorial.id }) }}">{{ bookEditionLang.bookEdition.editorial.name }}</a>
+    </span>
+        <div class="book_info__tags tags">
+            {% for tag in bookEditionLang.bookEdition.book.tags %}
+                <span class="tags__tag_name">
+                <a href="{{ path('tag', { 'id': tag.id }) }}">{{ tag.name }}</a>
+            </span>
+            {% endfor %}
+        </div>
+        <div class="book_info__language">
+            <span class="book_info__edition__label">Language: </span>
+            <span class="book_info__edition__value">{{ bookEditionLang.language }}</span>
+        </div>
+    </section>
 {% endblock %}

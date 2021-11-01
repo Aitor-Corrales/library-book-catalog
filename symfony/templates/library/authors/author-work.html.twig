@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Authors{% endblock %}
+{% block body_content %}
+    <ul class="list author_list">
+        {% for author in authors %}
+            <li class="list__element author_list__author_work author_work">
+                <span class="author_work__name">
+                    <a href="{{ path('authorWork', {id: author.id}) }}">{{ author.name }}</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

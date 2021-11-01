@@ -1,11 +1,11 @@
 <ul class="list book_list">
     {% for bookEditionLang in toShowBooks %}
-        <li class="book_list__book_summary book_summary">
+        <li class="list__element book_list__book_summary book_summary">
             <img class="book_summary__image"
                  src="{{ asset('images/list/' ~ bookEditionLang.bookEdition.imagePath ~ '.jpg') }}"
                  alt="{{ bookEditionLang.title }}"/>
             <span class="book_summary__title"><a
-                        href="/book-edition-lang/{{ bookEditionLang.id }}">{{ bookEditionLang.title }}</a></span>
+                        href="{{ path('bookEditionLang', {'id': bookEditionLang.id}) }}">{{ bookEditionLang.title }}</a></span>
             <span class="book_summary__summary">{{ bookEditionLang.summary }}</span>
             <div class="book_summary__tags tags">
                 {% for tag in bookEditionLang.bookEdition.book.tags %}

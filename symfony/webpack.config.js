@@ -25,6 +25,7 @@ Encore
     .addStyleEntry('reset_styles', './assets/styles/reset.scss')
     .addStyleEntry('buttons_styles', './assets/styles/atoms/buttons.scss')
     .addStyleEntry('login_register_styles', './assets/styles/molecules/login-register.scss')
+    .addStyleEntry('book_info_styles', './assets/styles/pages/book-info.scss')
     .addEntry('app_js', './assets/js/app.js')
     .addEntry('register_form_js', './assets/js/modules/register-form-validations.js')
 
