@@ -15,8 +15,7 @@
 
   @media (max-width: 500px) {
     grid-template-areas:"image"
-                      "title"
-                      "summary"
+                      "information"
                       "tags";
     .book_summary__image {
       margin-left: auto;

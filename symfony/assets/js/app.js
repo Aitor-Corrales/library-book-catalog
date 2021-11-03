@@ -3,7 +3,7 @@ import header from "./modules/header";
 
 const procedures = {
     mainProcedure() {
-        // Load every action in header module
+        // Loads every action in header module
         header();
         events.on();
     }
