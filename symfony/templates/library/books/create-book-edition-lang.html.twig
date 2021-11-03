@@ -13,52 +13,88 @@
                 <textarea class="input input--text" maxlength="255" id="summary" name="_summary" required></textarea>
             </div>
 
-            <div class="edition_section form_section">
-                <label for="edition">Edition</label>
-                <input class="input input--text" type="text" id="edition" name="_edition" required/>
-            </div>
-
             <div class="translator_section form_section">
                 <label for="translator">Translator</label>
                 <select class="select select--single" id="translator" name="_translator" required>
                     <option class="select__option" value="">Select an option</option>
                     {% for translator in translators %}
-                        <option class="select__option" value="{{ translator.id }}">{{ translator.name }}</option>
+                        <option class="select__option" value="{{ translator.id }}"
+                                {% if translatorSelected == translator.id %}selected{% endif %}>{{ translator.name }}</option>
                     {% endfor %}
                 </select>
             </div>
-
-            <div class="editorial_section form_section">
-                <label for="editorial">Editorial</label>
-                <select class="select select--single" id="editorial" name="_editorial" required>
-                    <option class="select__option" value="">Select an option</option>
-                    {% for editorial in editorials %}
-                        <option class="select__option" value="{{ editorial.id }}">{{ editorial.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="editor_section form_section">
-                <label for="editor">Editorial</label>
-                <select class="select select--single" id="editor" name="_editor" required>
-                    <option class="select__option" value="">Select an option</option>
-                    {% for editor in editors %}
-                        <option class="select__option" value="{{ editor.id }}">{{ editor.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
             <div class="language_section form_section">
                 <label for="language">Language</label>
                 <select class="select select--single" id="language" name="_language" required>
                     <option class="select__option" value="">Select an option</option>
                     {% for key, value in languages %}
-                        <option class="select__option" value="{{ key }}">{{ value }}</option>
+                        <option class="select__option" value="{{ key }}"
+                                {% if languageSelected == key %}selected{% endif %}>{{ value }}</option>
                     {% endfor %}
                 </select>
             </div>
+
+            {% if bookEditionId == '' %}
+                <div class="edition_section form_section">
+                    <label for="edition">Edition</label>
+                    <input class="input input--text" type="text" id="edition" name="_edition"
+                           {% if edition %}value="{{ edition }}" {% endif %}required/>
+                </div>
+
+                <div class="editorial_section form_section">
+                    <label for="editorial">Editorial</label>
+                    <select class="select select--single" id="editorial" name="_editorial" required>
+                        <option class="select__option" value="">Select an option</option>
+                        {% for editorial in editorials %}
+                            <option class="select__option" value="{{ editorial.id }}"
+                                    {% if editorialSelected == editorial.id %}selected{% endif %}>{{ editorial.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="editor_section form_section">
+                    <label for="editor">Editor</label>
+                    <select class="select select--single" id="editor" name="_editor" required>
+                        <option class="select__option" value="">Select an option</option>
+                        {% for editor in editors %}
+                            <option class="select__option" value="{{ editor.id }}"
+                                    {% if editorSelected == editor.id %}selected{% endif %}>{{ editor.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            {% if bookId == '' and bookEditionId == '' %}
+                <div class="tags_section form_section">
+                    <label for="tags">Tags</label>
+                    <select class="select select--single" id="tags" name="_tags[]" multiple>
+                        {% for tag in tags %}
+                            <option class="select__option" value="{{ tag.id }}"
+                                    {% if tagSelected == tag.id %}selected{% endif %}>{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="author_section form_section">
+                    <label for="author">Author</label>
+                    <select class="select select--single" id="author" name="_authors[]" multiple required>
+                        <option class="select__option" value="">Select an option</option>
+                        {% for author in authors %}
+                            <option class="select__option" value="{{ author.id }}"
+                                    {% if authorSelected == author.id %}selected{% endif %}>{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            <div class="image_section form_section">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="_image" accept="image/jpg">
+            </div>
+
             <input type="hidden" name="_create" value="true">
-            <button class="button button--primary submit" type="submit">Sign in</button>
+            <input type="hidden" name="_bookId" value="{{ bookId }}">
+            <input type="hidden" name="_bookEditionId" value="{{ bookEditionId }}">
+            <button class="button button--primary submit" type="submit">Submit</button>
         </form>
     </section>
 {% endblock %}

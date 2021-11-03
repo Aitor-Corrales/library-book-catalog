@@ -2,10 +2,11 @@
 
 .book_list__book_summary.book_summary {
   display: grid;
-  grid-template-areas:"image title"
-                      "image summary"
+  grid-template-areas:"image information"
                       "tags tags";
-  grid-gap: 16px;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 80px auto;
+  grid-gap: 8px;
   padding: 12px;
 
   &:hover {
@@ -21,6 +22,7 @@
       margin-left: auto;
       margin-right: auto;
     }
+    grid-template-columns: 100% 100%;
   }
 }
 
@@ -28,12 +30,11 @@
   grid-area: image;
 }
 
-.book_summary__title {
-  grid-area: title;
-}
-
-.book_summary__summary {
-  grid-area: summary;
+.book_summary__information {
+  grid-area: information;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .book_summary__tags {

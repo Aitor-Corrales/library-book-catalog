@@ -18,9 +18,9 @@ class TranslatorController extends BaseController
     /**
      * @Route("/translators", name="translatorList")
      */
-    public function editorialList(): Response
+    public function translatorList(): Response
     {
-        return $this->render('library/translator-list.html.twig', [
+        return $this->render('library/translators/translator-list.html.twig', [
             'translators' => $this->translatorRepository->findAll(),
         ]);
     }
@@ -34,6 +34,7 @@ class TranslatorController extends BaseController
         if ($translator) {
             return $this->render('library/translators/translator.html.twig', [
                 'translator' => $translator,
+                'toShowBooks' => $translator->getBookEditionLangs(),
             ]);
         }
         return $this->renderErrorPage();

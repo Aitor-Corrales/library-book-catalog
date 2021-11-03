@@ -1,4 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block title %}Editorials{% endblock %}
 {% block body_content %}
+    <ul class="list editorial_list">
+        {% for editorial in editorials %}
+            <li class="list__element editorial_list__editorial_work editorial_work">
+                <span class="editorial_work__name">
+                    <a href="{{ path('editorial', {id: editorial.id}) }}">{{ editorial.name }}</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ editor.name }}{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'editorId': editor.id}) }}">Create
+        book!</a>
+{% endblock %}
+{% block body_content %}
+    <section class="editor_info info">
+        <div class="editor_info__email">
+            <span class="editor_info__email__label">Email: </span>
+            <span class="editor_info__email__value">{{ editor.email }}</span>
+        </div>
+        <div class="editor_info__name">
+            <span class="editor_info__name__label">Name: </span>
+            <span class="editor_info__name__value">{{ editor.name }}</span>
+        </div>
+        <div class="editor_info__editorial">
+            <span class="editor_info__editorial__label">Editorial: </span>
+            <span class="editor_info__editorial__value">
+                <a href="{{ path('editorial', {'id':editor.editorial.id} ) }}">{{ editor.editorial.name }}</a>
+            </span>
+        </div>
+    </section>
+    {% include('library/books/book-edition-lang-list.html.twig') %}
+{% endblock %}

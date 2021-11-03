@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Book{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'bookId': book.id }) }}">Create
+        book!</a>
+{% endblock %}
+{% block body_content %}
+    <section class="book_info info">
+        <div class="book_info__author">
+            <span class="book_info__author__label">Authors: </span>
+            {% for author in book.authors %}
+                <span class="book_info__author__value">
+                    <a href="{{ path('author', {'id':author.id} ) }}">{{ author.name }}</a>
+                </span>
+            {% endfor %}
+        </div>
+    </section>
+    {% include('library/books/book-edition-lang-list.html.twig') %}
+{% endblock %}

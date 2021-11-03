@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ author.name }}{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'authorId': author.id}) }}">Create
+        book!</a>
+{% endblock %}
+{% block body_content %}
+    {% include('library/books/book-edition-lang-list.html.twig') %}
+{% endblock %}

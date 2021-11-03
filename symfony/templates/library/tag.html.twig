@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-{% block title %}{{ tag.name }}{% endblock %}
-{% block body_content %}
-    {% if toShowBooks %}
-        {% include('library/books/book-edition-lang-list.html.twig') %}
-    {% else %}
-        <span class="alert alert--info">We couldn't find any element that matches the search criteria!</span>
-    {% endif %}
-{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ tag.name }}{% endblock %}
+{% block body_content %}
+    {% include('library/books/book-edition-lang-list.html.twig') %}
+{% endblock %}

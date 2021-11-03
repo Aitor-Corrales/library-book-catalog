@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Tags{% endblock %}
+{% block body_content %}
+    <ul class="list tag_list">
+        {% for tag in tags %}
+            <li class="list__element tag_list__tag tag">
+                <span class="tag__name">
+                    <a href="{{ path('tag', {id: tag.id}) }}">{{ tag.name }}</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

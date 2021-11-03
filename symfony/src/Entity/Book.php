@@ -66,6 +66,16 @@ class Book
         return $this->authors;
     }
 
+    /**
+     * @param Author[]
+     * @return $this
+     */
+    public function setAuthors(array $authors): self
+    {
+        $this->authors = $authors;
+        return $this;
+    }
+
     public function addAuthor(Author $author): self
     {
         if (!$this->authors->contains($author)) {
@@ -88,6 +98,16 @@ class Book
     public function getTags(): Collection
     {
         return $this->tags;
+    }
+
+    /**
+     * @param Tag[]
+     * @return $this
+     */
+    public function setTags(array $tags): self
+    {
+        $this->tags = $tags;
+        return $this;
     }
 
     public function addTag(Tag $tag): self

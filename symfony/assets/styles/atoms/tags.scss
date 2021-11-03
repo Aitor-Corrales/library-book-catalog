@@ -1,6 +1,7 @@
 @import '../variables/colors';
 
 .tags .tags__tag_name {
+  display: inline-block;
   padding: 4px;
   color: $grey-6-color;
   background-color: $orange-4-color;

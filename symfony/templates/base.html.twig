@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Library Hall</title>
+    <title>Library</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('global_styles') }}
         {{ encore_entry_link_tags('reset_styles') }}
@@ -195,7 +195,9 @@
                     <li><a href="{{ path('bookEditionLangList') }}" class="navigation__list__element">Books!</a></li>
                     <li><a href="{{ path('authorList') }}" class="navigation__list__element">Authors</a></li>
                     <li><a href="{{ path('editorialList') }}" class="navigation__list__element">Editorials</a></li>
+                    <li><a href="{{ path('editorList') }}" class="navigation__list__element">Editors</a></li>
                     <li><a href="{{ path('translatorList') }}" class="navigation__list__element">Translators</a></li>
+                    <li><a href="{{ path('tagList') }}" class="navigation__list__element">Tags</a></li>
                 </ul>
             </nav>
             <article class="header__profile profile">
@@ -227,7 +229,7 @@
         <section class="alerts">
             <ul class="alerts_error_list">
                 {% block alerts_error %}
-                    {% if error is defined %}
+                    {% if error is defined and error != '' %}
                         <li class="alert_error_list__error">
                             <span class="alert alert--error">{{ error }}</span>
                         </li>
@@ -283,9 +285,6 @@
                 <a href="#" class="footer__links__link">Contact</a>
                 <a href="#" class="footer__links__link">Location</a>
                 <a href="#" class="footer__links__link">Legal information</a>
-            </article>
-            <article class="footer__disclaimer">
-                <span class="footer__disclaimer__copyright">copyright example</span>
             </article>
         </footer>
     {% endblock %}

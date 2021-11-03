@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Book Edition {{ bookEdition.edition }}{% endblock %}
+{% block breadcrumbs %}
+    <span class="breadcrumbs__string">
+    <a href="{{ path('home') }}">Home</a> -
+    <a href="{{ path('book', {'id': bookEdition.book.id}) }}">Book</a> -
+    <a href="{{ path('bookEdition', {'id': bookEdition.id}) }}">Book Edition {{ bookEdition.edition }}</a>
+</span>
+{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary"
+       href="{{ path('createBookEditionLang', {'bookEditionId': bookEdition.id }) }}">Create book!</a>
+{% endblock %}
+{% block body_content %}
+    <section class="internal_info book_info info">
+        <div class="book_info__edition">
+            <span class="book_info__edition__label">Edition: </span>
+            <span class="book_info__edition__value">{{ bookEdition.edition }}</span>
+        </div>
+        <div class="book_info__editorial">
+            <span class="book_info__editorial__label">Editorial: </span>
+            <span class="book_info__editorial__value">
+                <a href="{{ path('editorial', {'id':bookEdition.editorial.id} ) }}">{{ bookEdition.editorial.name }}</a>
+            </span>
+        </div>
+        <div class="book_info__editor">
+            <span class="book_info__editor__label">Editor: </span>
+            <span class="book_info__editor__value">
+                <a href="{{ path('editor', {'id':bookEdition.editor.id} ) }}">{{ bookEdition.editor.name }}</a>
+            </span>
+        </div>
+    </section>
+    {% include('library/books/book-edition-lang-list.html.twig') %}
+{% endblock %}

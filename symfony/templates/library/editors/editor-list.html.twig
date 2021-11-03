@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editors{% endblock %}
+{% block body_content %}
+    <ul class="list editor_list">
+        {% for editor in editors %}
+            <li class="list__element editor_list__editor editor">
+                <span class="editor__name">
+                    <a href="{{ path('editor', {id: editor.id}) }}">{{ editor.name }}</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

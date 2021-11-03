@@ -1,4 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}Editorials{% endblock %}
+{% block title %}Translators{% endblock %}
 {% block body_content %}
+    <ul class="list translator_list">
+        {% for translator in translators %}
+            <li class="list__element translator_list__translator_work translator_work">
+                <span class="translator_work__name">
+                    <a href="{{ path('translator', {id: translator.id}) }}">{{ translator.name }}</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

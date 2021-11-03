@@ -1,33 +1,28 @@
+@import '../variables/colors';
+
 .book_edition_lang_info {
   display: grid;
-  grid-template-areas:"image summary"
-                      "image editorial"
-                      "image edition"
-                      "image lang"
-                      "tags tags";
+  grid-template-areas:"image information"
+                      "other other";
   grid-gap: 16px;
+  grid-template-columns: 350px auto;
+  grid-template-rows: 600px auto;
 }
 
 .book_info__image {
   grid-area: image;
 }
 
-.book_info__summary {
-  grid-area: summary;
-}
-
-.book_info__editorial {
-  grid-area: editorial;
-}
-
 .book_info__edition {
-  grid-area: edition;
+  grid-area: information;
+  display: flex;
+  flex-direction: column;
 }
 
-.book_info__language {
-  grid-area: lang;
+.book_info__edition__summary {
+  overflow: auto;
 }
 
-.book_info__tags {
-  grid-area: tags;
+.book_other_info {
+  grid-area: other;
 }

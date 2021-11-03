@@ -89,6 +89,7 @@ body {
 
   .title_and_actions {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
   }
@@ -101,6 +102,15 @@ body {
   padding: 24px;
   background-color: $white-color;
   border: 1px solid $grey-2-color;
+}
+
+.internal_info {
+  padding: 8px;
+  background-color: $blue-7-color;
+
+  & > div {
+    padding: 8px 4px;
+  }
 }
 
 .body__content__page__search {

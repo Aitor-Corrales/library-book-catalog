@@ -19,32 +19,23 @@ class BookEditionRepository extends ServiceEntityRepository
         parent::__construct($registry, BookEdition::class);
     }
 
-    // /**
-    //  * @return BookEdition[] Returns an array of BookEdition objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param string $edition
+     * @param int $bookId
+     * @return BookEdition|null
+     * Returns a bookEdition with first param's edition number and with second param's book as parent
+     */
+    public function findByEditionAndBookId(string $edition, int $bookId): ?BookEdition
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+        $bookEdition = $this->createQueryBuilder('bookEdition')
+            ->leftJoin('bookEdition.book', 'book')
+            ->andWhere('bookEdition.edition = :edition')
+            ->andWhere('book.id = :bookId')
+            ->setParameter('edition', $edition)
+            ->setParameter('bookId', $bookId)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+        return count($bookEdition) === 1 ? $bookEdition[0] : null;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?BookEdition
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

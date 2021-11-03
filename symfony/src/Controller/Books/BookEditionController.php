@@ -26,6 +26,7 @@ class BookEditionController extends BaseController
         if ($bookEdition) {
             return $this->render('library/books/book-edition.html.twig', [
                 'bookEdition' => $bookEdition,
+                'toShowBooks' => $bookEdition->getBookEditionLangs(),
             ]);
         }
         return $this->renderErrorPage();
