@@ -12,7 +12,7 @@
 {% endblock %}
 {% block actions %}
     <a class="link_to_button button--primary-inverted"
-       href="{{ path('modifyBookEditionLang', {'id': bookEditionLang.id}) }}">Modify</a>
+       href="{{ path('createOrUpdateBookEditionLang', {'id': bookEditionLang.id}) }}">Update</a>
     <a class="link_to_button button--alert" href="{{ path('deleteBookEditionLang', {'id': bookEditionLang.id}) }}">Delete</a>
 {% endblock %}
 {% block body_content %}

@@ -30,7 +30,7 @@ class Editorial
     private $bookEditions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Editor::class, mappedBy="editorial", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Editor::class, mappedBy="editorial", cascade={"remove"})
      */
     private $editors;
 

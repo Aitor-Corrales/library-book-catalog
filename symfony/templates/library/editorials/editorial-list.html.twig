@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Editorials{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createOrUpdateEditorial') }}">Create</a>
+{% endblock %}
 {% block body_content %}
     <ul class="list editorial_list">
         {% for editorial in editorials %}

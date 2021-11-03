@@ -1,6 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ translator.name }}{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary"
+       href="{{ path('createOrUpdateBookEditionLang', {'translatorId': translator.id }) }}">Create book!</a>
+    <a class="link_to_button button--primary-inverted"
+       href="{{ path('createOrUpdateTranslator', {'id': translator.id}) }}">Update</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteTranslator', {'id': translator.id}) }}">Delete</a>
+{% endblock %}
 {% block body_content %}
-    <span class="translator_name">{{ translator.name }}</span>
-    <span class="translator_email">{{ translator.email }}</span>
+    <section class="internal_info translator_info info">
+        <div class="translator_info__email">
+            <span class="translator_info__email__label">Email: </span>
+            <span class="translator_info__email__value">{{ translator.email }}</span>
+        </div>
+        <div class="translator_info__name">
+            <span class="translator_info__name__label">Name: </span>
+            <span class="translator_info__name__value">{{ translator.name }}</span>
+        </div>
+    </section>
+    {% include('library/books/book-edition-lang-list.html.twig') %}
 {% endblock %}

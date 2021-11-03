@@ -9,7 +9,8 @@
 {% endblock %}
 {% block actions %}
     <a class="link_to_button button--primary"
-       href="{{ path('createBookEditionLang', {'bookEditionId': bookEdition.id }) }}">Create book!</a>
+       href="{{ path('createOrUpdateBookEditionLang', {'bookEditionId': bookEdition.id }) }}">Create book!</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteBookEdition', {'id': bookEdition.id}) }}">Delete</a>
 {% endblock %}
 {% block body_content %}
     <section class="internal_info book_info info">

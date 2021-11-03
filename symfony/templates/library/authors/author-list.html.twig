@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Authors{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createOrUpdateAuthor') }}">Create</a>
+{% endblock %}
+
 {% block body_content %}
     <ul class="list author_list">
         {% for author in authors %}

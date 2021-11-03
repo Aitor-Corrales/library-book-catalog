@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Library Hall{% endblock %}
 {% block actions %}
-    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang') }}">Create book!</a>
+    <a class="link_to_button button--primary" href="{{ path('createOrUpdateBookEditionLang') }}">Create book!</a>
 {% endblock %}
 {% block body_content %}
      {% include('library/books/book-edition-lang-list.html.twig') %}

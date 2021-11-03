@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Upload translator!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createOrUpdateTranslator') }}" class="create__form form" method="post">
+            <div class="name_section form_section">
+                <label for="name">Name</label>
+                <input class="input input--text" type="text" id="name" name="_name"
+                       {% if translator is defined and translator != '' %}value="{{ translator.name }}"
+                       {% endif %}required autofocus/>
+            </div>
+
+            <div class="email_section form_section">
+                <label for="email">Email</label>
+                <input class="input input--text" type="email" id="email" name="_email"
+                       {% if translator is defined and translator != '' %}value="{{ translator.email }}"
+                       {% endif %}required/>
+            </div>
+
+            <input type="hidden" name="_create" value="true">
+            {% if translator is defined and translator != '' %}
+                <input type="hidden" name="_translatorId" value="{{ translator.id }}">
+            {% endif %}
+            <button class="button button--primary submit" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

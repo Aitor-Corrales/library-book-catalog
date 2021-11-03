@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Upload tag!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createOrUpdateTag') }}" class="create__form form" method="post">
+            <div class="name_section form_section">
+                <label for="name">Name</label>
+                <input class="input input--text" type="text" id="name" name="_name"
+                       {% if tag is defined and tag != '' %}value="{{ tag.name }}" {% endif %}required autofocus/>
+            </div>
+
+            <input type="hidden" name="_create" value="true">
+            {% if tag is defined and tag != '' %}
+                <input type="hidden" name="_tagId" value="{{ tag.id }}">
+            {% endif %}
+            <button class="button button--primary submit" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

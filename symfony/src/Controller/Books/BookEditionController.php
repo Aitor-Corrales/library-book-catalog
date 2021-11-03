@@ -18,6 +18,32 @@ class BookEditionController extends BaseController
     }
 
     /**
+     * @Route("/delete/book-edition/{id}", name="deleteBookEdition")
+     */
+    public function deleteBookEdition(string $id): Response
+    {
+        $bookEdition = $this->bookEditionRepository->find($id);
+        if ($bookEdition) {
+            $book = $bookEdition->getBook();
+            $entityManager = $this->getDoctrine()->getManager();
+            try {
+                $entityManager->remove($bookEdition);
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                return $this->render('library/books/book-edition.html.twig', [
+                    'bookEdition' => $bookEdition,
+                    'toShowBooks' => $bookEdition->getBookEditionLangs(),
+                    'error' => $e->getMessage()
+                ]);
+            }
+            return $this->redirectToRoute('book', [
+                'id' => $book->getId(),
+            ]);
+        }
+        return $this->renderErrorPage();
+    }
+
+    /**
      * @Route("/book-edition/{id}", name="bookEdition")
      */
     public function bookEdition(int $id): Response

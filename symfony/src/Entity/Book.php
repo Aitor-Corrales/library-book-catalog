@@ -31,7 +31,7 @@ class Book
     private $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity=BookEdition::class, mappedBy="book")
+     * @ORM\OneToMany(targetEntity=BookEdition::class, mappedBy="book", cascade={"remove"})
      */
     private $bookEditions;
 

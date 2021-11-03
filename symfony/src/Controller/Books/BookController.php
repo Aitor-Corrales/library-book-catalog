@@ -35,4 +35,26 @@ class BookController extends BaseController
         }
         return $this->renderErrorPage();
     }
+
+    /**
+     * @Route("/delete/book/{id}", name="deleteBook")
+     */
+    public function deleteBook(string $id): Response
+    {
+        $book = $this->bookRepository->find($id);
+        if ($book) {
+            $entityManager = $this->getDoctrine()->getManager();
+            try {
+                $entityManager->remove($book);
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                return $this->render('library/books/book.html.twig', [
+                    'book' => $book,
+                    'error' => $e->getMessage()
+                ]);
+            }
+            return $this->redirectToRoute('home');
+        }
+        return $this->renderErrorPage();
+    }
 }

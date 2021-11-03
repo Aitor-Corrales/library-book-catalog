@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Upload editor!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createOrUpdateEditor') }}" class="create__form form" method="post">
+            <div class="name_section form_section">
+                <label for="name">Name</label>
+                <input class="input input--text" type="text" id="name" name="_name"
+                       {% if editor is defined and editor != '' %}value="{{ editor.name }}" {% endif %}required
+                       autofocus/>
+            </div>
+
+            <div class="email_section form_section">
+                <label for="email">Email</label>
+                <input class="input input--text" type="email" id="email" name="_email"
+                       {% if editor is defined and editor != '' %}value="{{ editor.email }}" {% endif %}required/>
+            </div>
+
+            <div class="editorial_section form_section">
+                <label for="editorial">Editorial</label>
+                <select class="select select--single" id="editorial" name="_editorial" required>
+                    <option class="select__option" value="">Select an option</option>
+                    {% for editorial in editorials %}
+                        <option class="select__option" value="{{ editorial.id }}"
+                                {% if editor is defined and editor != '' %}{% if editor.editorial.id == editorial.id %}
+                            selected
+                        {% endif %}{% endif %}>{{ editorial.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input type="hidden" name="_create" value="true">
+            {% if editor is defined and editor != '' %}
+                <input type="hidden" name="_editorId" value="{{ editor.id }}">
+            {% endif %}
+            <button class="button button--primary submit" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

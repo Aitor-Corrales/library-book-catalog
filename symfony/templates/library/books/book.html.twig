@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Book{% endblock %}
 {% block actions %}
-    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'bookId': book.id }) }}">Create
+    <a class="link_to_button button--primary" href="{{ path('createOrUpdateBookEditionLang', {'bookId': book.id }) }}">Create
         book!</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteBook', {'id': book.id}) }}">Delete</a>
 {% endblock %}
 {% block body_content %}
     <section class="book_info info">

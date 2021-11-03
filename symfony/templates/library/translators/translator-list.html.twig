@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Translators{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary" href="{{ path('createOrUpdateTranslator') }}">Create</a>
+{% endblock %}
 {% block body_content %}
     <ul class="list translator_list">
         {% for translator in translators %}

@@ -37,7 +37,7 @@ class BookEdition
     private $book;
 
     /**
-     * @ORM\OneToMany(targetEntity=BookEditionLang::class, mappedBy="bookEdition")
+     * @ORM\OneToMany(targetEntity=BookEditionLang::class, mappedBy="bookEdition", cascade={"remove"})
      */
     private $bookEditionLangs;
 

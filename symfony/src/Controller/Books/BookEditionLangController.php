@@ -89,21 +89,36 @@ class BookEditionLangController extends BaseController
     }
 
     /**
-     * @Route("/create/book-edition-lang", name="createBookEditionLang")
+     * @Route("/create-or-update/book-edition-lang", name="createOrUpdateBookEditionLang")
      */
-    public function createBookEditionLang(Request $request): Response
+    public function createOrUpdateBookEditionLang(Request $request): Response
     {
         if ($request->get('_create')) {
             if ($this->requiredFieldsFilled($request) &&
                 $this->isInformationCoherentAndFilled($request)
             ) {
-                $bookEditionLang = $this->_createBookEditionLang($request);
-                return $this->render('library/books/book-edition-lang.html.twig', [
-                    'bookEditionLang' => $bookEditionLang,
-                ]);
+                $bookEditionLang = $this->_createOrUpdateBookEditionLang($request);
+                return $this->redirectToRoute('bookEditionLang', ['id' => $bookEditionLang->getId()]);
             }
         }
-        return $this->render('library/books/create-book-edition-lang.html.twig', [
+        $bookEditionLang = $request->query->get('id') ?
+            $this->bookEditionLangRepository->find($request->query->get('id')) :
+            '';
+        $bookEditionId = '';
+        if ($request->query->get('bookEditionId')) {
+            $bookEditionId = $request->query->get('bookEditionId');
+        } else if ($bookEditionLang) {
+            $bookEditionId = $bookEditionLang->getBookEdition()->getId();
+        }
+
+        $bookId = '';
+        if ($request->query->get('bookId')) {
+            $bookId = $request->query->get('bookId');
+        } else if ($bookEditionLang) {
+            $bookId = $bookEditionLang->getBookEdition()->getBook()->getId();
+        }
+
+        return $this->render('library/books/create-update-book-edition-lang.html.twig', [
             'error' => $this->error,
             'authors' => $this->authorRepository->findAll(),
             'translators' => $this->translatorRepository->findAll(),
@@ -118,20 +133,9 @@ class BookEditionLangController extends BaseController
             'languageSelected' => $request->query->get('languageCode') ?? '',
             'editorSelected' => $request->query->get('editorId') ?? '',
             'tagSelected' => $request->query->get('tagId') ?? '',
-            'bookEditionId' => $request->query->get('bookEditionId') ?? '',
-            'bookId' => $request->query->get('bookId') ?? '',
-        ]);
-    }
-
-    /**
-     * @Route("/modify/book-edition-lang/{id}", name="modifyBookEditionLang")
-     */
-    public function modifyBookEditionLang(string $id): Response
-    {
-        $bookEditionLang = $this->bookEditionLangRepository->find($id);
-        $bookEdition = $bookEditionLang->getBookEdition();
-        return $this->render('library/books/book-edition.html.twig', [
-            'bookEdition' => $bookEdition,
+            'bookEditionLang' => $bookEditionLang,
+            'bookEditionId' => $bookEditionId,
+            'bookId' => $bookId,
         ]);
     }
 
@@ -165,9 +169,10 @@ class BookEditionLangController extends BaseController
      * @return BookEditionLang
      * Creates a BookEditionLang with the data received from the request
      */
-    private function _createBookEditionLang(Request $request): BookEditionLang
+    private function _createOrUpdateBookEditionLang(Request $request): BookEditionLang
     {
-        $bookEditionLang = new BookEditionLang();
+        $existentBookEditionLang = $request->get('_bookEditionLangId') ? $this->editorRepository->find($request->get('_bookEditionLangId')) : null;
+        $bookEditionLang = $existentBookEditionLang ?? new BookEditionLang();
         $entityManager = $this->getDoctrine()->getManager();
         $bookEditionLang->setTitle($request->get('_title'));
         $bookEditionLang->setSummary($request->get('_summary'));

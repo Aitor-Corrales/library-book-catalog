@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ editor.name }}{% endblock %}
 {% block actions %}
-    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'editorId': editor.id}) }}">Create
+    <a class="link_to_button button--primary"
+       href="{{ path('createOrUpdateBookEditionLang', {'editorId': editor.id}) }}">Create
         book!</a>
+    <a class="link_to_button button--primary-inverted" href="{{ path('createOrUpdateEditor', {'id': editor.id}) }}">Update</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteEditor', {'id': editor.id}) }}">Delete</a>
 {% endblock %}
 {% block body_content %}
-    <section class="editor_info info">
+    <section class="internal_info editor_info info">
         <div class="editor_info__email">
             <span class="editor_info__email__label">Email: </span>
             <span class="editor_info__email__value">{{ editor.email }}</span>

@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ editorial.name }}{% endblock %}
 {% block actions %}
-    <a class="link_to_button button--primary" href="{{ path('createBookEditionLang', {'editorialId': editorial.id}) }}">Create
+    <a class="link_to_button button--primary"
+       href="{{ path('createOrUpdateBookEditionLang', {'editorialId': editorial.id}) }}">Create
         book!</a>
+    <a class="link_to_button button--primary-inverted"
+       href="{{ path('createOrUpdateEditorial', {'id': editorial.id}) }}">Update</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteEditorial', {'id': editorial.id}) }}">Delete</a>
 {% endblock %}
 {% block body_content %}
-    <section class="editor_info info">
-        <div class="editor_info__name">
-            <span class="editor_info__name__label">Name: </span>
-            <span class="editor_info__name__value">{{ editorial.name }}</span>
+    <section class="internal_info editorial_info info">
+        <div class="editorial_info__name">
+            <span class="editorial_info__name__label">Name: </span>
+            <span class="editorial_info__name__value">{{ editorial.name }}</span>
         </div>
     </section>
     {% include('library/books/book-edition-lang-list.html.twig') %}

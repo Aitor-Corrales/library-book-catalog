@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Upload editorial!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createOrUpdateEditorial') }}" class="create__form form" method="post">
+            <div class="name_section form_section">
+                <label for="name">Name</label>
+                <input class="input input--text" type="text" id="name" name="_name"
+                       {% if editorial is defined and editorial != '' %}value="{{ editorial.name }}" {% endif %}required
+                       autofocus/>
+            </div>
+
+            <input type="hidden" name="_create" value="true">
+            {% if editorial is defined and editorial != '' %}
+                <input type="hidden" name="_editorialId" value="{{ editorial.id }}">
+            {% endif %}
+            <button class="button button--primary submit" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

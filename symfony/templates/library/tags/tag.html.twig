@@ -1,5 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ tag.name }}{% endblock %}
+{% block actions %}
+    <a class="link_to_button button--primary"
+       href="{{ path('createOrUpdateBookEditionLang', {'tagId': tag.id }) }}">Create book!</a>
+    <a class="link_to_button button--primary-inverted" href="{{ path('createOrUpdateTag', {'id': tag.id}) }}">Update</a>
+    <a class="link_to_button button--alert" href="{{ path('deleteTag', {'id': tag.id}) }}">Delete</a>
+{% endblock %}
 {% block body_content %}
+    <section class="internal_info tag_info info">
+        <div class="tag_info__name">
+            <span class="tag_info__name__label">Name: </span>
+            <span class="tag_info__name__value">{{ tag.name }}</span>
+        </div>
+    </section>
     {% include('library/books/book-edition-lang-list.html.twig') %}
 {% endblock %}

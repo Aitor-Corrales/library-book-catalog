@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Upload author!{% endblock %}
+{% block body_content %}
+    <section class="create">
+        <form action="{{ path('createOrUpdateAuthor') }}" class="create__form form" method="post">
+            <div class="name_section form_section">
+                <label for="name">Name</label>
+                <input class="input input--text" type="text" id="name" name="_name"
+                       {% if author is defined and author != '' %}value="{{ author.name }}" {% endif %}required
+                       autofocus/>
+            </div>
+
+            <input type="hidden" name="_create" value="true">
+            {% if author is defined and author != '' %}
+                <input type="hidden" name="_authorId" value="{{ author.id }}">
+            {% endif %}
+            <button class="button button--primary submit" type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}
